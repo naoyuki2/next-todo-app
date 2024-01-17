@@ -19,9 +19,9 @@ export default function Home() {
         getTodo()
     }, [])
     return (
-        <>
+        <div>
             <div>
-                <h1>SELECT</h1>
+                <h1>Todo App</h1>
             </div>
             {todos.map((todo) => (
                 <div key={todo.id}>
@@ -30,6 +30,6 @@ export default function Home() {
                     </h2>
                 </div>
             ))}
-        </>
+        </div>
     )
 }
