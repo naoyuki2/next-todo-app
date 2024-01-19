@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Todo" (
+CREATE TABLE "todo" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT,
@@ -7,5 +7,5 @@ CREATE TABLE "Todo" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "Todo_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "todo_pkey" PRIMARY KEY ("id")
 );
