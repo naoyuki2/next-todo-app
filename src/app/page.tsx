@@ -45,6 +45,30 @@ export default function Home() {
         setTodos(todos.filter((todo) => todo.id !== data.id))
     }
 
+    const patchTodo = async (todo: todo) => {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/todo/${todo.id}`,
+            {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    isDone: !todo.isDone,
+                }),
+            },
+        )
+        const data = await res.json()
+        setTodos(
+            todos.map((todo) => {
+                if (todo.id === data.id) {
+                    return data
+                }
+                return todo
+            }),
+        )
+    }
+
     return (
         <>
             <input
@@ -57,6 +81,11 @@ export default function Home() {
 
             {todos.map((todo) => (
                 <div key={todo.id}>
+                    <input
+                        type="checkbox"
+                        checked={todo.isDone}
+                        onChange={() => patchTodo(todo)}
+                    />
                     <p>{todo.id}</p>
                     <p>{todo.title}</p>
                     <p>{todo.content}</p>
