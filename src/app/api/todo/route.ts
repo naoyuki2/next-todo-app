@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
     // todoテーブルから全件取得
     try {
+        console.log('GETします')
         const todos: todo[] = await prisma.todo.findMany()
         return NextResponse.json(todos)
     } catch (error) {
