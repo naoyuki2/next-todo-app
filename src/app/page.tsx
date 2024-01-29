@@ -1,15 +1,14 @@
 import { todo } from '@prisma/client'
-import TodoList from './components/TodoList'
-import Form from './components/Form'
-import { getTodos } from './utils/api'
+import * as Todo from '@features/todo/components/Index'
+import * as TodoAPI from '@features/todo/api/Index'
 
 export default async function Home() {
-    const todos: todo[] = await getTodos()
+    const todos: todo[] = await TodoAPI.getTodos()
 
     return (
         <>
-            <Form />
-            <TodoList todos={todos} />
+            <Todo.TodoInput />
+            <Todo.TodoList todos={todos} />
         </>
     )
 }

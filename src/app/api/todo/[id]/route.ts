@@ -1,4 +1,4 @@
-import { todo } from '@prisma/client'
+import { todo as TodoType } from '@prisma/client'
 import prisma from '../../lib/prisma'
 import { NextResponse } from 'next/server'
 
@@ -6,12 +6,10 @@ export async function DELETE(
     request: Request,
     { params }: { params: { id: string } },
 ) {
-    // todoテーブルのレコードを削除
-    // console.log(request)
-    console.log(params)
+    console.log('DELETEします')
     const id = Number(params.id)
     try {
-        const todo: todo = await prisma.todo.delete({
+        const todo: TodoType = await prisma.todo.delete({
             where: {
                 id: id,
             },
@@ -26,11 +24,11 @@ export async function PATCH(
     request: Request,
     { params }: { params: { id: string } },
 ) {
-    // todoテーブルのレコードを更新
+    console.log('PATCHします')
     const body = await request.json()
     const id = Number(params.id)
     try {
-        const todo: todo = await prisma.todo.update({
+        const todo: TodoType = await prisma.todo.update({
             where: {
                 id: id,
             },

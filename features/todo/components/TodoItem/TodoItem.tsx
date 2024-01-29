@@ -1,23 +1,23 @@
 'use client'
 
-import { todo } from '@prisma/client'
-import { deleteTodo, patchTodo } from '../utils/api'
+import { todo as TodoType } from '@prisma/client'
 import { useRouter } from 'next/navigation'
+import * as TodoAPI from '@features/todo/api/Index'
 
 type Props = {
-    todo: todo
+    todo: TodoType
 }
 
 const TodoDetail = ({ todo }: Props) => {
     const router = useRouter()
 
     const handleDelete = async (id: number) => {
-        await deleteTodo(id)
+        await TodoAPI.deleteTodo(id)
         router.refresh()
     }
 
-    const hadlePatch = async (todo: todo) => {
-        await patchTodo(todo)
+    const handlePatch = async (todo: TodoType) => {
+        await TodoAPI.patchTodo(todo)
         router.refresh()
     }
 
@@ -25,9 +25,10 @@ const TodoDetail = ({ todo }: Props) => {
         <>
             <div key={todo.id}>
                 <input
+                    name="isDone"
                     type="checkbox"
                     checked={todo.isDone}
-                    onChange={() => hadlePatch(todo)}
+                    onChange={() => handlePatch(todo)}
                 />
                 <p>{todo.id}</p>
                 <p>{todo.title}</p>
