@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import { todo } from '@prisma/client'
 import * as Todo from '@features/todo/components/Index'
 import * as TodoAPI from '@features/todo/api/Index'
